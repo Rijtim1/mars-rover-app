@@ -1,5 +1,4 @@
 'use client';
-
 import { useState } from 'react';
 
 const QueryForm = ({ onSubmit }) => {
@@ -15,29 +14,26 @@ const QueryForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-gray-100 rounded-lg shadow-md">
       <div>
-        <label className="block text-gray-700" htmlFor="sol">Martian Sol:</label>
+        <label className="block text-gray-700">Martian Sol:</label>
         <input
           type="number"
-          id="sol"
           value={sol}
           onChange={(e) => setSol(e.target.value)}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
         />
       </div>
       <div>
-        <label className="block text-gray-700" htmlFor="earthDate">Earth Date:</label>
+        <label className="block text-gray-700">Earth Date:</label>
         <input
           type="date"
-          id="earthDate"
           value={earthDate}
           onChange={(e) => setEarthDate(e.target.value)}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
         />
       </div>
       <div>
-        <label className="block text-gray-700" htmlFor="camera">Camera:</label>
+        <label className="block text-gray-700">Camera:</label>
         <select
-          id="camera"
           value={camera}
           onChange={(e) => setCamera(e.target.value)}
           className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
