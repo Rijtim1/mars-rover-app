@@ -3,6 +3,14 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Header from '@/app/components/Header';
 import { fetchAPOD } from '@/app/utils/api';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Home() {
   const [apod, setApod] = useState(null);
@@ -23,35 +31,40 @@ export default function Home() {
         <div className="mt-8">
           {error && <p className="text-red-500">{error}</p>}
           {apod ? (
-            <div className="text-center">
-              <h2 className="text-2xl font-bold mb-2">{apod.title}</h2>
-              {apod.media_type === 'image' ? (
-                <div className="relative mx-auto" style={{ width: 'auto', height: 'auto' }}>
-                  <Image
-                    src={apod.url}
-                    alt={apod.title}
-                    layout="intrinsic"
-                    width={apod.width}
-                    height={apod.height}
-                    className="rounded-md"
-                  />
-                </div>
-              ) : (
-                <video
-                  controls
-                  className="rounded-md mx-auto"
-                  style={{ maxWidth: '100%', height: 'auto' }}
-                >
-                  <source src={apod.url} type="video/mp4" />
-                </video>
-              )}
-              <p className="mt-4">{apod.explanation}</p>
+            <Card className="mx-auto max-w-lg">
+              <CardHeader>
+                <CardTitle>{apod.title}</CardTitle>
+                <CardDescription>{apod.date}</CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                {apod.media_type === 'image' ? (
+                  <div className="relative mx-auto" style={{ width: 'auto', height: 'auto' }}>
+                    <Image
+                      src={apod.url}
+                      alt={apod.title}
+                      layout="intrinsic"
+                      width={apod.width}
+                      height={apod.height}
+                      className="rounded-md"
+                    />
+                  </div>
+                ) : (
+                  <video
+                    controls
+                    className="rounded-md mx-auto"
+                    style={{ maxWidth: '100%', height: 'auto' }}
+                  >
+                    <source src={apod.url} type="video/mp4" />
+                  </video>
+                )}
+                <p className="mt-4">{apod.explanation}</p>
+              </CardContent>
               {apod.copyright && (
-                <p className="mt-2 text-sm text-gray-500">
+                <CardFooter className="text-sm text-gray-500">
                   &copy; {apod.copyright}
-                </p>
+                </CardFooter>
               )}
-            </div>
+            </Card>
           ) : (
             <p>Loading...</p>
           )}
