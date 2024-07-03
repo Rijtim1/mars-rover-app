@@ -26,20 +26,21 @@ export default function Home() {
             <div className="text-center">
               <h2 className="text-2xl font-bold mb-2">{apod.title}</h2>
               {apod.media_type === 'image' ? (
-                <Image
-                  src={apod.url}
-                  alt={apod.title}
-                  width={600}
-                  height={400}
-                  layout="responsive"
-                  className="rounded-md"
-                />
+                <div className="relative mx-auto" style={{ width: 'auto', height: 'auto' }}>
+                  <Image
+                    src={apod.url}
+                    alt={apod.title}
+                    layout="intrinsic"
+                    width={apod.width}
+                    height={apod.height}
+                    className="rounded-md"
+                  />
+                </div>
               ) : (
                 <video
                   controls
                   className="rounded-md mx-auto"
-                  width="600"
-                  height="400"
+                  style={{ maxWidth: '100%', height: 'auto' }}
                 >
                   <source src={apod.url} type="video/mp4" />
                 </video>
