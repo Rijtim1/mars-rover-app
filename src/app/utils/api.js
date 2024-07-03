@@ -45,5 +45,20 @@ export const fetchAPOD = async () => {
   if (!res.ok) {
     throw new Error('Failed to fetch APOD.');
   }
-  return res.json();
+  const data = await res.json();
+
+  // Fetch image dimensions if the media type is an image
+  if (data.media_type === 'image') {
+    const image = new Image();
+    image.src = data.url;
+    await new Promise((resolve) => {
+      image.onload = () => {
+        data.width = image.naturalWidth;
+        data.height = image.naturalHeight;
+        resolve();
+      };
+    });
+  }
+
+  return data;
 };
