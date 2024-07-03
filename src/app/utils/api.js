@@ -4,14 +4,21 @@ const API_KEY = process.env.NEXT_PUBLIC_NASA_API_KEY;
 const BASE_URL = 'https://api.nasa.gov/mars-photos/api/v1';
 
 export const fetchRoverPhotos = async (rover, sol, earthDate, camera) => {
-  const params = new URLSearchParams({
-    api_key: API_KEY,
-    sol: sol || '',
-    earth_date: earthDate || '',
-    camera: camera || '',
-  });
+  let url = `${BASE_URL}/rovers/${rover}/photos?api_key=${API_KEY}`;
 
-  const res = await fetch(`${BASE_URL}/rovers/${rover}/photos?${params}`);
+  if (sol) {
+    url += `&sol=${sol}`;
+  }
+  if (earthDate) {
+    url += `&earth_date=${earthDate}`;
+  }
+  if (camera) {
+    url += `&camera=${camera}`;
+  }
+
+  console.log(url); // Debug log to see the constructed URL
+
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error('Failed to fetch rover photos.');
   }
@@ -19,7 +26,11 @@ export const fetchRoverPhotos = async (rover, sol, earthDate, camera) => {
 };
 
 export const fetchRoverManifest = async (rover) => {
-  const res = await fetch(`${BASE_URL}/manifests/${rover}?api_key=${API_KEY}`);
+  const url = `${BASE_URL}/manifests/${rover}?api_key=${API_KEY}`;
+
+  console.log(url); // Debug log to see the constructed URL
+
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error('Failed to fetch rover manifest.');
   }
