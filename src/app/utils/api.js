@@ -36,3 +36,14 @@ export const fetchRoverManifest = async (rover) => {
   }
   return res.json();
 };
+
+// const API_KEY = process.env.NEXT_PUBLIC_NASA_API_KEY;
+const BASE_URL_APOD = 'https://api.nasa.gov/planetary';
+
+export const fetchAPOD = async () => {
+  const res = await fetch(`${BASE_URL_APOD}/apod?api_key=${API_KEY}`);
+  if (!res.ok) {
+    throw new Error('Failed to fetch APOD.');
+  }
+  return res.json();
+};
