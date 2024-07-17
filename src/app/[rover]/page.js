@@ -51,7 +51,7 @@ const RoverPage = ({ params }) => {
       <main className="container mx-auto p-4">
         <div className="flex items-center space-x-2 mb-4">
           <Image src={`/${rover.toLowerCase()}-logo.png`} alt={`${rover} Logo`} width={40} height={40} />
-          <h1 className="text-3xl font-bold">{rover} Rover Photos</h1>
+          <h1 className="text-3xl font-bold">{rover.charAt(0).toUpperCase() + rover.slice(1)} Rover Photos</h1>
         </div>
         <Card className="mb-4">
           <CardHeader>
