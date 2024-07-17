@@ -1,12 +1,50 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [
-            "mars.jpl.nasa.gov",
-            "mars.nasa.gov",
-            "apod.nasa.gov"
-        ]
-    }
-};
-
-export default nextConfig;
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'mars.jpl.nasa.gov',
+          pathname: '/**',
+        },
+        {
+          protocol: 'http',
+          hostname: 'mars.jpl.nasa.gov',
+          pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'mars.nasa.gov',
+          pathname: '/**',
+        },
+        {
+          protocol: 'http',
+          hostname: 'mars.nasa.gov',
+          pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: 'apod.nasa.gov',
+          pathname: '/**',
+        },
+        {
+          protocol: 'http',
+          hostname: 'apod.nasa.gov',
+          pathname: '/**',
+        },
+        {
+          protocol: 'https',
+          hostname: '**',
+          pathname: '/**',
+        },
+        {
+          protocol: 'http',
+          hostname: '**',
+          pathname: '/**',
+        },
+      ],
+    },
+  };
+  
+  export default nextConfig;
+  

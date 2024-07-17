@@ -25,7 +25,7 @@ const RoverImage = ({ imgSrc, camera, date }) => {
           <p className="text-gray-500">Image not available</p>
         </div>
       )}
-      <p className="text-center text-gray-700">{camera}</p>
+      <p className="text-center text-gray-700 mt-2">{camera}</p>
       <p className="text-center text-gray-500">{date}</p>
     </div>
   );
