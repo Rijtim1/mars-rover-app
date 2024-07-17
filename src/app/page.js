@@ -22,6 +22,10 @@ export default function Home() {
       .catch(err => setError('Failed to fetch APOD.'));
   }, []);
 
+  if (!apod && !error) {
+    return <div className="flex justify-center items-center h-screen"><h1>Loading...</h1></div>;
+  }
+
   return (
     <div>
       <Header />
@@ -30,7 +34,7 @@ export default function Home() {
         <p>Select a rover to start exploring photos.</p>
         <div className="mt-8">
           {error && <p className="text-red-500">{error}</p>}
-          {apod ? (
+          {apod && (
             <Card className="mx-auto max-w-lg">
               <CardHeader>
                 <CardTitle>{apod.title}</CardTitle>
@@ -68,8 +72,6 @@ export default function Home() {
                 </CardFooter>
               )}
             </Card>
-          ) : (
-            <p>Loading...</p>
           )}
         </div>
       </main>
