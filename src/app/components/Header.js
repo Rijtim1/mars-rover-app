@@ -15,7 +15,7 @@ const Header = () => {
           </li>
           <li className="flex-1">
             <Link href="/curiosity" className="flex flex-col items-center space-y-1 hover:text-gray-300 justify-center">
-              <Image src="/curiosity-logo.png" alt="Curiosity" width={44} height={44} />
+              <Image src="/curiosity-logo.png" alt="Curiosity Rover Logo" width={44} height={44} />
               <span style={{ fontSize: '14px' }}>Curiosity</span>
             </Link>
           </li>
