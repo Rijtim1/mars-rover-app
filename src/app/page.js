@@ -43,8 +43,8 @@ export default function Home() {
                       src={apod.url}
                       alt={apod.title}
                       layout="intrinsic"
-                      width={apod.width}
-                      height={apod.height}
+                      width={apod.width || 400}
+                      height={apod.height || 400}
                       className="rounded-md"
                     />
                   </div>
