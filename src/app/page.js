@@ -43,19 +43,22 @@ export default function Home() {
                       src={apod.url}
                       alt={apod.title}
                       layout="intrinsic"
-                      width={apod.width || 400}
-                      height={apod.height || 400}
+                      width={400}
+                      height={400}
                       className="rounded-md"
                     />
                   </div>
                 ) : (
-                  <video
-                    controls
-                    className="rounded-md mx-auto"
-                    style={{ maxWidth: '100%', height: 'auto' }}
-                  >
-                    <source src={apod.url} type="video/mp4" />
-                  </video>
+                  <div className="relative mx-auto" style={{ width: '100%', height: 'auto' }}>
+                    <iframe
+                      width="100%"
+                      height="400"
+                      src={`${apod.url}?autoplay=1&mute=1`}
+                      title={apod.title}
+                      allow="autoplay"
+                      className="rounded-md"
+                    ></iframe>
+                  </div>
                 )}
                 <p className="mt-4">{apod.explanation}</p>
               </CardContent>
