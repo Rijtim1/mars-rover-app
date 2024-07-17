@@ -32,6 +32,10 @@ import {
 } from '@/components/ui/pagination';
 
 const ImageGrid = ({ photos }) => {
+  useEffect(() => {
+    console.log('Photos:', photos);
+  }, [photos]);
+
   return (
     <div className="p-4">
       <Carousel>
@@ -50,7 +54,6 @@ const ImageGrid = ({ photos }) => {
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
-                  {/* <CardDescription>{photo.earth_date}</CardDescription> */}
                 </CardHeader>
                 <CardContent>
                   <RoverImage
@@ -60,9 +63,6 @@ const ImageGrid = ({ photos }) => {
                     className="max-w-full h-auto"
                   />
                 </CardContent>
-                <CardFooter>
-                  {/* <p>{photo.rover.name}</p> */}
-                </CardFooter>
               </Card>
             </CarouselItem>
           ))}

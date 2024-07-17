@@ -27,22 +27,32 @@ const RoverPage = ({ params }) => {
   useEffect(() => {
     if (rover) {
       fetchRoverManifest(rover)
-        .then(data => setManifest(data.photo_manifest))
-        .catch(err => setError('Failed to fetch rover manifest.'));
+        .then(data => {
+          console.log('Fetched Manifest:', data); // Debug log
+          setManifest(data.photo_manifest);
+        })
+        .catch(err => {
+          console.error('Error fetching manifest:', err); // Debug log
+          setError('Failed to fetch rover manifest.');
+        });
     }
   }, [rover]);
 
-  const handleQuery = ({ sol, earthDate, camera }) => {
+  const handleQuery = ({ sol }) => {
     setError(null);
-    fetchRoverPhotos(rover, sol, earthDate, camera)
+    fetchRoverPhotos(rover, sol)
       .then(data => {
+        console.log('Fetched Photos:', data); // Debug log
         if (data.photos.length === 0) {
           setError('No photos found for the given parameters.');
         } else {
           setPhotos(data.photos);
         }
       })
-      .catch(err => setError('Failed to fetch photos.'));
+      .catch(err => {
+        console.error('Error fetching photos:', err); // Debug log
+        setError('Failed to fetch photos.');
+      });
   };
 
   return (
@@ -51,7 +61,7 @@ const RoverPage = ({ params }) => {
       <main className="container mx-auto p-4">
         <div className="flex items-center space-x-2 mb-4">
           <Image src={`/${rover.toLowerCase()}-logo.png`} alt={`${rover} Logo`} width={40} height={40} />
-          <h1 className="text-3xl font-bold">{rover.charAt(0).toUpperCase() + rover.slice(1)} Rover Photos</h1>
+          <h1 className="text-3xl font-bold">{rover} Rover Photos</h1>
         </div>
         <Card className="mb-4">
           <CardHeader>

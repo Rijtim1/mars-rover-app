@@ -1,19 +1,21 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 
 const QueryForm = ({ onSubmit }) => {
   const [sol, setSol] = useState('');
-  const [earthDate, setEarthDate] = useState('');
-  const [camera, setCamera] = useState('all');
+
+  useEffect(() => {
+    console.log('Sol changed:', sol);
+  }, [sol]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ sol, earthDate, camera });
+    console.log('Form Submitted:', { sol });
+    onSubmit({ sol });
   };
 
   return (
@@ -30,40 +32,6 @@ const QueryForm = ({ onSubmit }) => {
           className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           min="0"
         />
-      </div>
-      <div>
-        <Label htmlFor="earthDate" className="block text-gray-700 text-sm font-medium mb-1">
-          Earth Date:
-        </Label>
-        <Input
-          id="earthDate"
-          type="date"
-          value={earthDate}
-          onChange={(e) => setEarthDate(e.target.value)}
-          className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div>
-        <Label htmlFor="camera" className="block text-gray-700 text-sm font-medium mb-1">
-          Camera:
-        </Label>
-        <Select onValueChange={(value) => setCamera(value)} value={camera}>
-          <SelectTrigger id="camera" className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <SelectValue placeholder="Select Camera" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All</SelectItem>
-            <SelectItem value="FHAZ">Front Hazard Avoidance Camera (FHAZ)</SelectItem>
-            <SelectItem value="RHAZ">Rear Hazard Avoidance Camera (RHAZ)</SelectItem>
-            <SelectItem value="MAST">Mast Camera (MAST)</SelectItem>
-            <SelectItem value="CHEMCAM">Chemistry and Camera Complex (CHEMCAM)</SelectItem>
-            <SelectItem value="MAHLI">Mars Hand Lens Imager (MAHLI)</SelectItem>
-            <SelectItem value="MARDI">Mars Descent Imager (MARDI)</SelectItem>
-            <SelectItem value="NAVCAM">Navigation Camera (NAVCAM)</SelectItem>
-            <SelectItem value="PANCAM">Panoramic Camera (PANCAM)</SelectItem>
-            <SelectItem value="MINITES">Miniature Thermal Emission Spectrometer (Mini-TES)</SelectItem>
-          </SelectContent>
-        </Select>
       </div>
       <Button
         type="submit"
