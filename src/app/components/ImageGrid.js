@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import RoverImage from './RoverImage';
 import {
   Carousel,
@@ -11,9 +12,7 @@ import {
   Card,
   CardHeader,
   CardContent,
-  CardFooter,
   CardTitle,
-  CardDescription,
 } from '@/components/ui/card';
 import {
   Tooltip,
@@ -21,19 +20,10 @@ import {
   TooltipContent,
   TooltipProvider,
 } from '@/components/ui/tooltip';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationPrevious,
-  PaginationLink,
-  PaginationEllipsis,
-  PaginationNext,
-} from '@/components/ui/pagination';
 
 const ImageGrid = ({ photos }) => {
   useEffect(() => {
-    console.log('Photos:', photos);
+    console.log('Photos:', photos); // Add log to check photos prop
   }, [photos]);
 
   return (
@@ -70,22 +60,6 @@ const ImageGrid = ({ photos }) => {
         <CarouselPrevious className="absolute left-0 ml-2 md:ml-4" />
         <CarouselNext className="absolute right-0 mr-2 md:mr-4" />
       </Carousel>
-      <Pagination>
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
     </div>
   );
 };

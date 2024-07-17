@@ -8,6 +8,7 @@ const RoverImage = ({ imgSrc, camera, date }) => {
   const [isValidImage, setIsValidImage] = useState(true);
 
   const handleImageError = () => {
+    console.log('Image failed to load:', imgSrc); // Add log to check image error
     setIsValidImage(false);
   };
 
@@ -17,7 +18,7 @@ const RoverImage = ({ imgSrc, camera, date }) => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <CardTitle>{camera}</CardTitle>
+              {/* <CardTitle>{camera}</CardTitle> */}
             </TooltipTrigger>
             <TooltipContent>
               <p>{camera}</p>
@@ -27,14 +28,17 @@ const RoverImage = ({ imgSrc, camera, date }) => {
       </CardHeader>
       <CardContent className="flex justify-center items-center">
         {isValidImage ? (
-          <Image
-            src={imgSrc}
-            alt={`${camera} - ${date}`}
-            width={400}
-            height={400}
-            className="rounded-md mb-4"
-            onError={handleImageError}
-          />
+          <div className="relative w-full h-0 pb-[100%]"> {/* Maintain aspect ratio */}
+            <Image
+              src={imgSrc}
+              alt={`${camera} - ${date}`}
+              layout="responsive"
+              width={400}
+              height={300}
+              className="rounded-md mb-4"
+              onError={handleImageError}
+            />
+          </div>
         ) : (
           <div className="flex items-center justify-center h-96 w-96 bg-gray-200 rounded-md">
             <p className="text-gray-500">Image not available</p>
@@ -42,7 +46,6 @@ const RoverImage = ({ imgSrc, camera, date }) => {
         )}
       </CardContent>
       <CardFooter className="flex flex-col items-center">
-        <p className="text-center text-gray-700 mt-2">{camera}</p>
         <p className="text-center text-gray-500">{date}</p>
       </CardFooter>
     </Card>

@@ -55,6 +55,10 @@ const RoverPage = ({ params }) => {
       });
   };
 
+  useEffect(() => {
+    console.log('Photos:', photos); // Add log to check photos state
+  }, [photos]);
+
   return (
     <div>
       <Header />
