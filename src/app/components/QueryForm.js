@@ -1,21 +1,31 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 
 const QueryForm = ({ onSubmit }) => {
   const [sol, setSol] = useState('');
-  const [earthDate, setEarthDate] = useState('');
-  const [camera, setCamera] = useState('');
+
+  useEffect(() => {
+    console.log('Sol changed:', sol);
+  }, [sol]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ sol, earthDate, camera });
+    console.log('Form Submitted:', { sol });
+    onSubmit({ sol });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 p-6 bg-gray-100 rounded-lg shadow-md">
+    <Form onSubmit={handleSubmit} className="space-y-6 p-6 bg-gray-100 rounded-lg shadow-md">
       <div>
-        <label className="block text-gray-700 text-sm font-medium mb-1">Martian Sol:</label>
-        <input
+        <Label htmlFor="sol" className="block text-gray-700 text-sm font-medium mb-1">
+          Martian Sol:
+        </Label>
+        <Input
+          id="sol"
           type="number"
           value={sol}
           onChange={(e) => setSol(e.target.value)}
@@ -23,41 +33,14 @@ const QueryForm = ({ onSubmit }) => {
           min="0"
         />
       </div>
-      <div>
-        <label className="block text-gray-700 text-sm font-medium mb-1">Earth Date:</label>
-        <input
-          type="date"
-          value={earthDate}
-          onChange={(e) => setEarthDate(e.target.value)}
-          className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div>
-        <label className="block text-gray-700 text-sm font-medium mb-1">Camera:</label>
-        <select
-          value={camera}
-          onChange={(e) => setCamera(e.target.value)}
-          className="block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">All</option>
-          <option value="FHAZ">FHAZ</option>
-          <option value="RHAZ">RHAZ</option>
-          <option value="MAST">MAST</option>
-          <option value="CHEMCAM">CHEMCAM</option>
-          <option value="MAHLI">MAHLI</option>
-          <option value="MARDI">MARDI</option>
-          <option value="NAVCAM">NAVCAM</option>
-          <option value="PANCAM">PANCAM</option>
-          <option value="MINITES">MINITES</option>
-        </select>
-      </div>
-      <button
+      <Button
         type="submit"
         className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        onClick={handleSubmit}
       >
         Search
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
 
