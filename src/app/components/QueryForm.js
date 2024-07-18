@@ -1,4 +1,3 @@
-"use client";
 import { useState, useEffect } from "react";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";

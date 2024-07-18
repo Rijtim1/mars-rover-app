@@ -1,4 +1,3 @@
-'use client';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Card, CardHeader, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
@@ -17,9 +16,6 @@ const RoverImage = ({ imgSrc, camera, date }) => {
       <CardHeader>
         <TooltipProvider>
           <Tooltip>
-            <TooltipTrigger>
-              {/* <CardTitle>{camera}</CardTitle> */}
-            </TooltipTrigger>
             <TooltipContent>
               <p>{camera}</p>
             </TooltipContent>
