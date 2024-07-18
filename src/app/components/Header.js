@@ -26,6 +26,22 @@ const Header = () => {
                 <span>Curiosity</span>
               </Link>
             </li>
+            {/* <li>
+              <Link
+                href="/opportunity"
+                className="flex flex-col items-center space-y-1 hover:text-gray-300"
+              >
+                <span>Opportunity</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/spirit"
+                className="flex flex-col items-center space-y-1 hover:text-gray-300"
+              >
+                <span>Spirit</span>
+              </Link>
+            </li> */}
           </ul>
         </NavigationMenu>
       </div>
